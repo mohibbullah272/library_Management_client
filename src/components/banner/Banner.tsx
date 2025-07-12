@@ -46,12 +46,6 @@ const Banner = () => {
     setCurrentSlide(index);
   };
 
-//   const stats = [
-//     { icon: BookOpen, label: 'Books Available', value: '10,000+' },
-//     { icon: Users, label: 'Active Members', value: '5,000+' },
-//     { icon: Clock, label: 'Open Hours', value: '24/7' },
-//     { icon: Award, label: 'Years Serving', value: '50+' }
-//   ];
 
   return (
     <div className="bg-gradient-to-r from-blue-50 to-indigo-100 py-12 md:py-16 lg:py-20">
@@ -69,19 +63,7 @@ const Banner = () => {
               </p>
             </div>
 
-            {/* Stats Grid */}
-            {/* <div className="grid grid-cols-2 gap-4 mt-8">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div key={index} className="bg-white/70 backdrop-blur-sm rounded-lg p-4 text-center border border-blue-100">
-                    <IconComponent className="h-6 w-6 text-blue-600 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                );
-              })}
-            </div> */}
+  
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
