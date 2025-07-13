@@ -3,6 +3,7 @@ import Banner from '../components/banner/Banner';
 import BookCard from '@/components/bookCard/BookCard';
 import type { IBook } from '../types/Book_interface';
 import Stats from '@/components/Stats/Stats';
+import LoadingPage from './LoadingPage';
 
 
 
@@ -12,7 +13,7 @@ const Home = () => {
 
     console.log(books,isLoading)
     if(isLoading){
-        return <p>Loading .....</p>
+        return <LoadingPage></LoadingPage>
     }
     return (
         <div>

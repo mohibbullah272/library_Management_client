@@ -1,6 +1,7 @@
 import { CalendarDays, Copy } from 'lucide-react';
 import type { IBook } from '../../types/Book_interface';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Link } from 'react-router';
 
 type BookCardProps = {
   item: IBook;
@@ -34,9 +35,13 @@ const BookCard = ({ item }: BookCardProps) => {
         </CardContent>
 
         <CardFooter>
-          <button className="bg-blue-600 w-full text-white py-2 px-1 rounded-3xl hover:bg-blue-700 transition">
+
+   <button className="bg-blue-600 w-full text-white py-2 px-1 rounded-3xl hover:bg-blue-700 transition">
+   <Link to={`/book-Details/${item._id}`}>
             View Details
+            </Link>
           </button>
+
         </CardFooter>
       </Card>
     </div>

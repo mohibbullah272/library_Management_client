@@ -1,5 +1,7 @@
 import Main from "@/layout/Main";
 import AllBooks from "@/page/AllBooks";
+import BookDetails from "@/page/BookDetails";
+import BorrowSummary from "@/page/BorrowSummary";
 import Home from "@/page/Home";
 import {
     createBrowserRouter
@@ -18,6 +20,14 @@ import {
         {
             path:'/allBooks',
             element:<AllBooks></AllBooks>
+        },
+        {
+          path:'/book-Details/:id',
+          element:<BookDetails></BookDetails>
+        },
+        {
+          path:'/borrow-summary',
+          element:<BorrowSummary></BorrowSummary>
         }
       ]) 
     },
