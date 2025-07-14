@@ -1,14 +1,40 @@
-import { useGetBookByIdQuery } from "@/feature/bookApi/bookApi";
-import type { IBook } from "@/types/Book_interface";
-import { useParams } from "react-router";
+import { useDeleteBookByIdMutation, useGetBookByIdQuery } from "@/feature/bookApi/bookApi";
+import { useNavigate, useParams } from "react-router";
 import LoadingPage from "./LoadingPage";
 import BorrowBookForm from "@/components/BorrowBookForm/BorrowBookForm";
 import { useState } from "react";
-
+import Swal from 'sweetalert2'
 const BookDetails = () => {
     const { id } = useParams();
+    const navigate=useNavigate()
+    const [DeleteBook]=useDeleteBookByIdMutation()
     const { data, isLoading } = useGetBookByIdQuery(id);
     const [open,setOpen]=useState(false)
+    const handleDelete =()=>{
+   
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                DeleteBook(id)
+              
+                    Swal.fire({
+                      title: "Deleted!",
+                      text: "Your file has been deleted.",
+                      icon: "success"
+                    });
+                    navigate('/')
+                
+            }
+          });
+    }
+  
     if (isLoading) {
         return <LoadingPage></LoadingPage>
     }
@@ -118,7 +144,7 @@ const BookDetails = () => {
                                     <button className="flex-1 px-6 py-3 bg-blue-100 text-blue-700 rounded-lg font-medium hover:bg-blue-200 transition-colors">
                                         Edit Book
                                     </button>
-                                    <button className="flex-1 px-6 py-3 bg-red-100 text-red-700 rounded-lg font-medium hover:bg-red-200 transition-colors">
+                                    <button onClick={handleDelete} className="flex-1 px-6 py-3 bg-red-100 text-red-700 rounded-lg font-medium hover:bg-red-200 transition-colors">
                                         Delete Book
                                     </button>
                                 </div>
@@ -128,7 +154,7 @@ const BookDetails = () => {
                 </div>
             </div>
         </div>
-<BorrowBookForm open={open} onOpenChange={setOpen}>
+<BorrowBookForm open={open} borrowDetails={data.data} onOpenChange={setOpen}>
 </BorrowBookForm>
 </>
     );

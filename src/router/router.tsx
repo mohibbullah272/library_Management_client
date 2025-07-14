@@ -1,4 +1,5 @@
 import Main from "@/layout/Main";
+import AddBookForm from "@/page/AddBook";
 import AllBooks from "@/page/AllBooks";
 import BookDetails from "@/page/BookDetails";
 import BorrowSummary from "@/page/BorrowSummary";
@@ -28,6 +29,10 @@ import {
         {
           path:'/borrow-summary',
           element:<BorrowSummary></BorrowSummary>
+        },
+        {
+          path:'/create-book',
+          element:<AddBookForm></AddBookForm>
         }
       ]) 
     },

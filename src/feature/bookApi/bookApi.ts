@@ -11,18 +11,54 @@ export const bookApi = createApi({
       mode: 'cors',
 
     }),
-   
+    tagTypes: ['books'],
     endpoints: (builder) => ({
+      
       getBooks: builder.query({
-        query: () => '/api/books'
-      }),
+        
+        query: () => '/api/books',
+        providesTags: ['books'],
+      }
+      
+      ),
       getBookById : builder.query({
         query: (id)=>`/api/books/${id}`
       }),
+      DeleteBookById:builder.mutation({
+        query:(id)=>({
+          url:`/api/books/${id}`,
+          method:"DELETE"
+        }),
+        invalidatesTags: ['books']
+      }),
       getBorrowSummary: builder.query({
         query: ()=> `/api/borrow`
-      })
+      }),
+      createBook:builder.mutation({
+        query:(body)=>({
+          url:'/api/books',
+          method: 'POST',
+          body: body,
+        }),
+        invalidatesTags: ['books']
+        
+      }),
+      createBorrowBook:builder.mutation({
+        query:(body)=>({
+          url:'/api/borrow',
+          method:"POST",
+          body:body
+        }),
+        invalidatesTags: ['books']
+      }) 
     })
   });
 
-  export const {useGetBooksQuery,useGetBookByIdQuery,useGetBorrowSummaryQuery} = bookApi
+  export const {
+    useGetBooksQuery
+    ,useGetBookByIdQuery
+    ,useGetBorrowSummaryQuery,
+    useCreateBookMutation,
+    useCreateBorrowBookMutation,
+    useDeleteBookByIdMutation
+  } = bookApi

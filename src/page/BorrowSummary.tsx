@@ -1,34 +1,23 @@
-import React from 'react';
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
   BookOpen, 
-  Calendar, 
-  User, 
+
   ArrowLeft, 
   CheckCircle, 
   Hash,
   Library,
   TrendingUp,
-  Clock
+
 } from "lucide-react";
 import { useGetBorrowSummaryQuery } from "@/feature/bookApi/bookApi";
 import LoadingPage from './LoadingPage';
 
-interface BorrowedBook {
-  book: {
-    title: string;
-    isbn: string;
-  };
-  totalQuantity: number;
-}
 
-interface BorrowSummaryResponse {
-  success: boolean;
-  message: string;
-  data: BorrowedBook[];
-}
+
+
 
 const BorrowSummary = () => {
 
